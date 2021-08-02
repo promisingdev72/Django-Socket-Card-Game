@@ -1,0 +1,25 @@
+#!/bin/bash
+
+NAME="card_game"
+DIR=/var/www/CardGame
+USER=django
+GROUP=django
+WORKERS=3
+BIND=unix:/var/www/CardGame/gunicorn.sock
+DJANGO_SETTINGS_MODULE=CardGame.settings
+DJANGO_WSGI_MODULE=CardGame.wsgi
+LOG_LEVEL=error
+
+cd $DIR
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=/usr/bin/python3
+
+exec /usr/local/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $WORKERS \
+  --user=$USER \
+  --group=$GROUP \
+  --bind=$BIND \
+  --log-level=$LOG_LEVEL \
+  --log-file=-

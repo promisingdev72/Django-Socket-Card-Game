@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Game Home</title>
+    <style id="cm-font-size" nonce="">
+        body {
+            background-color: #2c3338;
+            color: #606468;
+            font-family: "Open Sans", sans-serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .align {
+            display: grid;
+            -webkit-box-align: center;
+            align-items: center;
+            justify-items: center;
+            place-items: center;
+        }
+        input {
+            border: 0;
+            color: white;
+            padding: 15px 25px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            background-color: #3b4148;
+            width: 250px;
+        }
+        input[type="submit"] {
+            background-color: #ea4c88;
+            width: 300px;
+            color: #eee;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="align">
+
+  <div class="grid">
+    <form class="form" onsubmit="startSubmit(event)">
+      <div class="form__field">
+          <input id="room_name" type="text" name="room_name" class="form__input" placeholder="Room Name" required>
+      </div>
+      <div class="form__field">
+          <input autocomplete="username" id="person_name" type="text" name="person_name" class="form__input" placeholder="Your Name" required>
+      </div>
+      <div class="form__field">
+        <input type="submit" value="Start Game">
+      </div>
+    </form>
+  </div>
+
+<script>
+    function startSubmit(event) {
+        event.preventDefault();
+        const roomname = document.querySelector("#room_name").value;
+        const personname = document.querySelector("#person_name").value;
+        window.location.pathname = '/card-game/room/'+roomname+'/'+personname;
+    }
+</script>
+</body>
+</html>
